@@ -1,0 +1,172 @@
+<header id="home" class="hero-section" *ngIf="profile$ | async as profile">
+  
+  <div class="hero-container">
+    
+    <div class="text-content">
+      <h1 class="name" 
+          data-aos="fade-down" 
+          data-aos-duration="1200"
+          data-aos-offset="0">
+        {{ profile.name }}
+      </h1>
+      
+      <h2 class="tagline" 
+          data-aos="fade-up" 
+          data-aos-delay="200" 
+          data-aos-duration="1200"
+          data-aos-offset="0">
+        {{ profile.tagline }}
+      </h2>
+    </div>
+
+    <div class="image-wrapper" 
+         data-aos="zoom-in-left" 
+         data-aos-delay="400" 
+         data-aos-duration="1500"
+         data-aos-offset="0">
+      <img [src]="profile.profileImageUrl" [alt]="profile.name">
+    </div>
+
+  </div>
+
+  <div class="social-banner">
+  <div class="container">
+    
+    <div class="social-icons" *ngIf="socials$ | async as socials">
+      <a *ngFor="let social of socials" 
+         [href]="social.url" 
+         target="_blank" 
+         class="icon-link"
+         [attr.aria-label]="social.platform">
+        
+        <img *ngIf="social.iconUrl" [src]="social.iconUrl" [alt]="social.platform">
+        
+        <span *ngIf="!social.iconUrl">{{ social.platform }}</span>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+</header>
+
+<section id="projects" class="projects-section">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-down">Featured Projects</h2>
+    
+    <div class="projects-grid">
+      <app-project-card 
+        *ngFor="let project of featuredProjects$ | async | slice:0:6; let i = index" 
+        [project]="project"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        [attr.data-aos-delay]="i * 100"> </app-project-card>
+    </div>
+
+    <div class="view-all-container">
+      <a routerLink="/projects" class="view-all-btn">
+        View All Projects <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<section id="skills" class="skills-section">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-down">Technical Skills</h2>
+
+    <div class="skill-category" 
+         *ngFor="let category of categorizedSkills$ | async; let i = index"
+         [attr.data-aos]="i % 2 === 0 ? 'fade-right' : 'fade-left'"
+         data-aos-duration="1000">
+      
+      <h3 class="category-title">{{ category.title }}</h3>
+      
+      <div class="skills-grid">
+        <div class="skill-card" 
+             *ngFor="let skill of category.skills; let j = index"
+             data-aos="zoom-in"
+             [attr.data-aos-delay]="j * 100"> 
+          
+          <img *ngIf="skill.iconUrl" [src]="skill.iconUrl" [alt]="skill.name">
+          <h4>{{ skill.name }}</h4>
+          <p class="skill-subtitle">{{ skill.subtitle }}</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section id="experience" class="experience-section">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-down">Work Experience & Education</h2>
+    
+    <div class="timeline">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-item" 
+           *ngFor="let job of experience$ | async; let i = index"
+           [class.left]="i % 2 === 0" 
+           [class.right]="i % 2 !== 0"
+           [attr.data-aos]="i % 2 === 0 ? 'fade-right' : 'fade-left'"
+           data-aos-offset="200"> <div class="timeline-dot">
+           <i class="fas fa-briefcase"></i>
+        </div>
+
+        <div class="timeline-date">
+          {{ job.startDate | date:'MMM yyyy' }} - 
+          <span *ngIf="job.isCurrent; else endDate">Present</span>
+          <ng-template #endDate>{{ job.endDate | date:'MMM yyyy' }}</ng-template>
+        </div>
+
+        <div class="timeline-content">
+          <div class="job-header">
+            <h3 class="job-title">{{ job.jobTitle }}</h3>
+            <span class="company-name">@ {{ job.company }}</span>
+          </div>
+
+          <p class="location" *ngIf="job.location">
+            <i class="fas fa-map-marker-alt"></i> {{ job.location }}
+          </p>
+
+          <div class="tech-row" *ngIf="job.technologies">
+            <span class="wrench-icon">🔧</span> {{ job.technologies }}
+          </div>
+
+          <p class="description">
+            {{ job.description }}
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="blog" class="blog-section">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-down">Latest Articles</h2>
+    
+    <div class="blog-grid">
+      <div class="blog-card" *ngFor="let blog of blogs$ | async" data-aos="fade-up">
+        <a [routerLink]="['/blog', blog.slug]" class="card-image">
+          <img [src]="blog.mainImageUrl" [alt]="blog.title">
+        </a>
+
+        <div class="card-content">
+          <p class="date">{{ blog.publishedAt | date:'mediumDate' }}</p>
+          <h3 class="title">
+            <a [routerLink]="['/blog', blog.slug]">{{ blog.title }}</a>
+          </h3>
+          <a [routerLink]="['/blog', blog.slug]" class="read-more">
+            Read Article <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

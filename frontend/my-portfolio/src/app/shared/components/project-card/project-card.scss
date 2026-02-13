@@ -1,0 +1,202 @@
+/* Variables */
+$navy-overlay: rgba(17, 34, 64, 0.95); /* Deep Navy, slight transparency */
+$white: #ffffff;
+$green: #64ffda; /* Accent Green */
+$text-slate: #8892b0;
+
+/* --- MAIN CARD CONTAINER --- */
+.project-card {
+  position: relative;
+  width: 100%;
+  
+  /* 1. ASPECT RATIO FIX: Keeps card proportional (Wide & Short) 
+     so it fits on screens without scrolling. */
+  aspect-ratio: 3 / 3; 
+  
+  border-radius: 0px;
+  overflow: hidden; /* Keeps image inside corners */
+  cursor: pointer;
+  box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+  transition: transform 0.3s ease;
+  background-color: #0a192f; /* Fallback color */
+
+  /* Safety limit for very large screens */
+  max-height: 500px; 
+
+  /* HOVER EFFECTS */
+  &:hover {
+    transform: translateY(-5px); /* Lift card up */
+
+    /* Slide the Overlay UP */
+    .overlay-info {
+      transform: translateY(0);
+    }
+    
+    /* Fade the Title OUT */
+    .center-title {
+      opacity: 0;
+      transform: translate(-50%, -60%);
+    }
+    
+    /* Slight zoom on background image */
+    .bg-image {
+      transform: scale(1.05);
+      filter: brightness(0.4); /* Darken image further so overlay text pops */
+    }
+  }
+}
+
+/* --- 1. BACKGROUND IMAGE --- */
+.bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image fills card */
+  transition: transform 0.5s ease, filter 0.3s ease;
+  filter: brightness(0.7); /* Slightly dark by default */
+}
+
+/* --- 2. CENTER TITLE (Default State) --- */
+.center-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Perfectly centered */
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+  transition: all 0.4s ease;
+  padding: 0 20px;
+
+  h3 {
+    color: $white;
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+}
+
+/* --- 3. SLIDING OVERLAY (Hidden State) --- */
+.overlay-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $navy-overlay; /* The Navy Blue Background */
+  
+  /* Flex Layout: Content Left | Arrow Right */
+  display: flex;
+  
+  /* Start pushed down 100% (hidden) */
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth slide */
+  z-index: 3;
+}
+
+/* --- LEFT SIDE: CONTENT --- */
+.info-content {
+  flex: 1; /* Takes up most space */
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  overflow: hidden;
+}
+
+/* Scrollable Description */
+.description-scroll {
+  max-height: 180px; /* Limit height */
+  overflow-y: auto; /* Scroll if too long */
+  padding-right: 10px; 
+  margin-bottom: 20px;
+  
+  p {
+    color: #e6f1ff;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Custom Scrollbar */
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $green;
+    border-radius: 3px;
+  }
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.15);
+  margin-bottom: 15px;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  span {
+    font-family: monospace;
+    color: $green;
+    font-size: 0.85rem;
+    background: rgba(100, 255, 218, 0.1);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+}
+
+/* --- RIGHT SIDE: ARROW BUTTON --- */
+.action-arrow {
+  width: 80px; /* Fixed width sidebar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0,0,0,0.2); 
+  transition: background 0.3s;
+
+  i {
+    color: $white;
+    font-size: 1.8rem;
+    transition: transform 0.3s;
+  }
+
+  &:hover {
+    background: rgba(255,255,255,0.05);
+    i {
+      transform: translateX(5px) scale(1.1);
+      color: $green;
+    }
+  }
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+  .project-card {
+    /* Reset aspect ratio on mobile for safety */
+    aspect-ratio: auto; 
+    height: 350px;
+  }
+  
+  .center-title h3 {
+    font-size: 1.5rem;
+  }
+  
+  .info-content {
+    padding: 20px;
+  }
+
+  .action-arrow {
+    width: 60px;
+  }
+}

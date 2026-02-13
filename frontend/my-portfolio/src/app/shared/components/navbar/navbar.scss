@@ -1,0 +1,115 @@
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 0;
+  z-index: 1000; /* Always on top */
+  transition: all 0.4s ease; /* Smooth transition for color change */
+  background: transparent;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000; /* Black initially */
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+
+    li {
+      cursor: pointer;
+      font-weight: 500;
+      color: #000; /* Black initially */
+      position: relative;
+      
+      /* Cool hover underline effect */
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: var(--navy-blue);
+        transition: width 0.3s;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+
+  /* --- SCROLLED STATE --- */
+  &.scrolled {
+    background-color: var(--navy-blue); /* Turns Navy */
+    padding: 1rem 0; /* Shrinks slightly */
+    box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+
+    .logo {
+      color: #fff; /* Text turns white */
+    }
+
+    .nav-links li {
+      color: #fff; /* Links turn white */
+
+      &::after {
+        background-color: #64ffda; /* Underline turns Gold/Green */
+      }
+    }
+  }
+}
+
+
+$navy: #0a192f;
+$white: #e6f1ff;
+$pure-white: #ffffff;
+
+.contact-btn {
+  /* 1. Base State: Solid Navy Fill */
+  /* This ensures it is visible against a WHITE page background */
+  background-color: $navy; 
+  
+  /* 2. Text Color: White */
+  color: $white;
+  
+  /* 3. Border: White */
+  /* This ensures the shape is visible against a NAVY/DARK Hero background */
+  border: 1px solid $white;
+  
+  border-radius: 4px;
+  padding: 10px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  /* 4. Hover State: Invert to White */
+  &:hover {
+    background-color: $white; 
+    color: $navy; 
+    border-color: $white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+  
+  &:active {
+    transform: translateY(-1px);
+  }
+}

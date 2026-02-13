@@ -1,0 +1,833 @@
+/* VARIABLES */
+$black: #111;
+$white: #ffffff;
+$gray: #666;
+
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: $white; /* Clean White Background */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes Text top, Banner bottom */
+  padding-top: 280px; /* Space for navbar */
+  overflow: hidden; /* Cuts off image if it's too big */
+}
+
+.hero-container {
+  flex-grow: 1; /* Takes up all available space */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end; /* Aligns content to bottom (so image sits on bar) */
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- 1. TYPOGRAPHY --- */
+.text-content {
+  margin-bottom: auto; /* Pushes text to the top */
+  padding: 0 20px;
+  
+  .name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 5rem; /* Massive Text */
+    font-weight: 800; /* Extra Bold */
+    color: $black;
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: -2px; /* Tight tracking like the reference */
+  }
+
+  .tagline {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    color: $gray;
+    font-weight: 400;
+    margin-top: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* --- 2. THE IMAGE (The "Cutout" Look) --- */
+.image-wrapper {
+  margin-top: 100px; /* Space between text and head */
+  height: 60vh; /* Takes up 60% of the screen height */
+  display: flex;
+  align-items: flex-end; /* Anchors image to the bottom */
+  
+  img {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain; /* Keeps aspect ratio perfect */
+    
+    /* If your image has a background, this helps blend it slightly,
+       BUT a transparent PNG is highly recommended for this design.
+    */
+    filter: grayscale(100%); /* Optional: B&W look like reference */
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: grayscale(0%); /* Color on hover */
+    }
+  }
+}
+
+
+
+/* --- 3. SKILLS BANNER (Black Strip) --- */
+.skills-banner {
+ background-color: #000000;
+  width: 100%;
+  padding: 30px 0;
+  z-index: 2; /* Sits on top of everything */
+  border-top: 1px solid rgba(255,255,255,0.1);
+
+  .skills-track {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    flex-wrap: wrap; /* Wraps on mobile */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    .skill-item img {
+      height: 80px; /* Fixed height for consistency */
+      width: auto;
+      object-fit: contain;
+      
+      /* Make logos white (since banner is black) */
+      filter: brightness(0) invert(1); 
+      opacity: 0.7;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+/* --- RESPONSIVE (Mobile) --- */
+@media (max-width: 768px) {
+  .text-content .name {
+    font-size: 3rem; /* Smaller on phone */
+  }
+
+  .image-wrapper {
+    height: 40vh; /* Smaller image on phone */
+  }
+
+  .skills-track {
+    gap: 30px;
+    
+    .skill-item img {
+      height: 25px;
+    }
+  }
+}
+
+
+
+
+
+
+
+.projects-section {
+  padding: 80px 0;
+  background-color: #ffffff; /* White Section Background */
+  overflow: hidden;
+
+  .container {
+    /* 1. Reduce from 1400px to 1200px for safety */
+    max-width: 1500px; 
+    width: 100%; /* Ensures it shrinks on small screens */
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+ .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    color: #0a192f;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 40px; 
+    margin-bottom: 50px;
+
+    /* Responsive: Stack on tablets/mobile */
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .view-all-container {
+    text-align: center;
+    margin-top: 40px;
+    
+    .view-all-btn {
+      display: inline-block;
+      padding: 15px 40px;
+      background-color: transparent;
+      border: 2px solid #0a192f;
+      color: #0a192f;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: #0a192f;
+        color: #fff;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+/* VARIABLES (Matches your project theme) */
+$navy-card: #112240; /* Light Navy for cards */
+$navy-title: #0a192f; /* Dark Navy for titles */
+$text-green: #64ffda; /* Accent color for icons/titles */
+$text-slate: #8892b0; /* Light gray for descriptions */
+$white: #e6f1ff;
+$bg-white: #ffffff;
+
+.skills-section {
+  padding: 80px 0;
+  background-color: $bg-white; /* White Section Background */
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+    text-align: center;
+    color: $navy-title;
+  }
+}
+
+.skill-category {
+  margin-bottom: 50px;
+
+  .category-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $navy-title;
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
+
+    /* Optional: A small green line under the title */
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background-color: $text-green;
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+  }
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap to next line */
+  justify-content: center; /* Centers items if there are few (e.g. 1 or 2) */
+  gap: 20px; /* Reduced gap to your requested ~20px */
+}
+
+.skill-card {
+  background-color: $navy-card;
+  border-radius: 8px;
+  text-align: center;
+  
+  flex-grow: 1; 
+  flex-basis: 160px;  
+  max-width: 300px; 
+  
+  padding: 20px 15px; /* Comfortable padding */
+  min-height: 160px;  /* Keeps the "tall" look but slightly more compact */
+  
+&:first-child:last-child {
+    max-width: 600px; /* <--- ADJUST THIS VALUE (Makes the single card very wide) */
+    flex-basis: 400px; 
+  }
+
+&:first-child:nth-last-child(2),
+  &:first-child:nth-last-child(2) ~ & {
+    max-width: 600px; /* <--- ADJUST THIS VALUE (Makes the 2 cards wider than normal) */
+    flex-basis: 300px;
+  }  
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+  border: 1px solid transparent; 
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+    border: 1px solid $text-green;
+    
+    h4 { color: $text-green; }
+  }
+
+  img {
+    height: 40px; 
+    width: auto;
+    margin-bottom: 12px; 
+    /* Your filter code... */
+  }
+
+  h4 {
+    color: $white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+  }
+
+  .skill-subtitle {
+    color: $text-slate;
+    font-size: 0.80rem;
+    font-weight: 600;
+    margin: 0;
+  //  opacity: 0.8; /* Subtle look */
+  }
+
+  p {
+    color: $text-slate;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin: 0;
+  }
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 768px) {
+  .skills-grid {
+    gap: 15px; /* 15px gap on mobile */
+  }
+
+  .skill-card {
+    /* On mobile, we let them fill 50% of the screen minus gap */
+    flex-basis: calc(50% - 20px); 
+    max-width: 100%; /* Remove width limit on small phones */
+    min-height: 140px; 
+    padding: 20px 10px;
+  }
+  
+  .category-title {
+    font-size: 1.75rem; 
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* VARIABLES */
+$navy-dark: #0a192f;
+$navy-card: #112240;
+$white: #ffffff;
+$green: #64ffda;
+$blue-card-bg: #2196F3; 
+$light-card-bg: #8C9497;
+$text-black: #111111;
+
+.experience-section {
+  padding: 100px 0;
+  background-color: #f8f9fa; /* Slight grey bg to make white cards pop */
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: $navy-dark;
+    margin-bottom: 60px;
+  }
+}
+
+.timeline {
+  position: relative;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 1. The Central Line */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background-color: #000; /* Pitch Black Line */
+  top: 0;
+  border-radius: 2px;
+}
+
+/* 2. Item Container */
+.timeline-item {
+  position: relative;
+  margin-bottom: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  /* CLEARFIX for Float/Flex issues */
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+/* 3. The Center Dot */
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  top: 15px;
+  background-color: $green; /* Green accent dot */
+  border: 4px solid $white;
+  border-radius: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $navy-dark;
+  box-shadow: 0 0 0 4px #000; /* Black ring around dot */
+}
+
+/* 4. The Content Card */
+.timeline-content {
+  width: 42%; /* Leaves space for center line */
+  padding: 25px;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 10px 30px -15px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Triangle Pointer */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+}
+
+/* 5. Date Label Styling */
+.timeline-date {
+  position: absolute;
+  top: 25px;
+  width: 45%; /* Matches card width */
+  font-weight: 700;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+/* --- ALTERNATING LOGIC --- */
+
+/* LEFT ITEMS (Navy Blue Card) */
+.timeline-item.left {
+  .timeline-content {
+    margin-right: auto; /* Push to left */
+    background-color: $blue-card-bg; /* Bright Blue (Like Screenshot) */
+    color: $text-black;
+
+    /* Arrow points right */
+    &::before {
+      right: -10px;
+      border-width: 10px 0 10px 10px;
+      border-color: transparent transparent transparent #1a73e8;
+    }
+
+    /* Text Colors for Blue Card */
+   .job-title, h3 { color: $text-black; }
+    .company-name { color: rgba(0,0,0,0.8); }
+    .location { color: rgba(0,0,0,0.7); }
+    .description { color: rgba(0,0,0,0.85); }
+    .tech-row { 
+      color: $text-black; 
+      border-bottom: 1px solid rgba(0,0,0,0.15);
+    }
+  }
+
+  .timeline-date {
+    right: 0; /* Date on Right */
+    text-align: left;
+    padding-left: 40px;
+  }
+}
+
+/* RIGHT ITEMS (White Card) */
+.timeline-item.right {
+  .timeline-content {
+    margin-left: auto; /* Push to right */
+    background-color: $light-card-bg;
+    color: #333;
+
+    /* Arrow points left */
+    &::before {
+      left: -10px;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent $white transparent transparent;
+    }
+
+    /* Text Colors for White Card */
+     .job-title, h3 { color: $text-black; }
+   .company-name { color: rgba(0,0,0,0.8); }
+    .location { color: rgba(0,0,0,0.7); }
+    .description { color: rgba(0,0,0,0.85); }
+    .tech-row { 
+      color: #222; 
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+  }
+
+  .timeline-date {
+    left: 0; /* Date on Left */
+    text-align: right;
+    padding-right: 40px;
+  }
+}
+
+/* --- CONTENT STYLING --- */
+.job-header {
+  margin-bottom: 10px;
+  h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+  }
+  .company-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: block;
+    margin-top: 5px;
+  }
+}
+
+.location {
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+  i { margin-right: 5px; }
+}
+
+.tech-row {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.timeline-item.left .tech-row {
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+  .timeline-line {
+    left: 20px; /* Move line to far left */
+  }
+
+  .timeline-item {
+    justify-content: flex-start; /* Align everything left */
+    margin-bottom: 40px;
+  }
+
+  .timeline-dot {
+    left: 20px; /* Align dot to line */
+  }
+
+  .timeline-content {
+    width: calc(100% - 60px); /* Full width minus line space */
+    margin-left: 60px !important; /* Force margin left for both odd/even */
+    margin-right: 0 !important;
+    
+    /* Reset arrows to always point left */
+    &::before {
+      left: -10px !important;
+      right: auto !important;
+      border-width: 10px 10px 10px 0 !important;
+    }
+  }
+
+  /* Fix colors for "Left" items that are now technically on the right */
+  .timeline-item.left .timeline-content::before {
+    border-color: transparent #1a73e8 transparent transparent !important;
+  }
+  .timeline-item.right .timeline-content::before {
+    border-color: transparent $white transparent transparent !important;
+  }
+
+  .timeline-date {
+    position: relative;
+    top: -10px;
+    left: 60px !important;
+    width: auto;
+    text-align: left !important;
+    padding: 0;
+    margin-bottom: 10px;
+    display: block;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* VARIABLES */
+$navy-dark: #0a192f;
+$text-green: #64ffda;
+$slate: #8892b0;
+$white: #ffffff;
+
+.blog-section {
+  padding: 100px 0;
+  background-color: $white; /* Clean White Background */
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: $navy-dark;
+    margin-bottom: 60px;
+    font-weight: 700;
+  }
+}
+
+.blog-grid {
+  display: grid;
+  /* 3 Columns by default */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 30px; /* Space between cards */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- THE CARD --- */
+.blog-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden; /* Keeps image inside rounded corners */
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #eee; /* Slight border for definition */
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-7px); /* Lift up effect */
+    box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.2);
+    
+    .title a {
+      color: #1a73e8; /* Title turns blue on hover */
+    }
+    
+    .card-image img {
+      transform: scale(1.05); /* Image zoom */
+    }
+  }
+}
+
+/* 1. Image Area */
+.card-image {
+  height: 200px; /* Fixed height for uniformity */
+  overflow: hidden;
+  display: block;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fills box without stretching */
+    transition: transform 0.5s ease;
+  }
+}
+
+/* 2. Content Area */
+.card-content {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Fills remaining space */
+  
+  .date {
+    font-size: 0.85rem;
+    color: $slate;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .title {
+    margin: 0 0 15px 0;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    
+    a {
+      text-decoration: none;
+      color: $navy-dark;
+      transition: color 0.3s;
+    }
+  }
+
+  .read-more {
+    margin-top: auto; /* Pushes button to bottom */
+    text-decoration: none;
+    color: #1a73e8; /* Link Blue */
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Space between text and arrow */
+    
+    i {
+      transition: transform 0.3s;
+    }
+
+    &:hover i {
+      transform: translateX(5px); /* Arrow moves right on hover */
+    }
+  }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 Columns on Tablet */
+  }
+}
+
+@media (max-width: 600px) {
+  .blog-grid {
+    grid-template-columns: 1fr; /* 1 Column on Mobile */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$navy-dark: #000000; /* Deepest Navy */
+$blue: blue; /* Your Green Accent */
+$white: #e6f1ff;
+
+.social-banner {
+  background-color: $navy-dark;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center; /* Center the icons */
+  align-items: center;
+  gap: 50px; /* Big spacing between GitHub and LinkedIn */
+}
+
+.icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  
+  img {
+    height: 180px; /* Size of the icons */
+    width: auto;
+  //  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%); /* Makes black icons white */
+    transition: all 0.3s ease;
+  }
+
+  /* HOVER EFFECT */
+  &:hover {
+    transform: translateY(-5px); /* Float up */
+    
+    img {
+      /* This filter turns white into your Green accent (#64ffda) */
+      filter: invert(78%) sepia(52%) saturate(466%) hue-rotate(106deg) brightness(101%) contrast(101%);
+    }
+  }
+}

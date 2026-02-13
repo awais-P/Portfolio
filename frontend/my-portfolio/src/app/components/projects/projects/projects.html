@@ -1,0 +1,10 @@
+<div class="projects-page">
+  <h1>All Projects</h1>
+  
+  <div class="grid">
+    <app-project-card 
+      *ngFor="let project of allProjects$ | async" 
+      [project]="project">
+    </app-project-card>
+  </div>
+</div>

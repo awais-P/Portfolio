@@ -1,0 +1,8 @@
+<div class="blog-card">
+  <img [src]="blog.mainImageUrl" [alt]="blog.title">
+  <div class="content">
+    <h3>{{ blog.title }}</h3>
+    <p>{{ blog.publishedAt | date:'mediumDate' }}</p>
+    <a [routerLink]="['/blog', blog.slug]" class="btn">Read More</a>
+  </div>
+</div>

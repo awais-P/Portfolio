@@ -1,0 +1,18 @@
+<nav [class.scrolled]="isScrolled">
+  <div class="container">
+    
+    <a class="logo" (click)="scrollTo('home')">Awais.dev</a>
+
+    <ul class="nav-links">
+      <li (click)="scrollTo('projects')">Projects</li>
+      <li (click)="scrollTo('skills')">Skills</li>
+      <li (click)="scrollTo('experience')">Experience</li>
+      <li (click)="scrollTo('blog')">Blog</li>
+    </ul>
+
+    <div class="nav-cta">
+      <a routerLink="/contact" class="contact-btn">Contact Me</a>
+    </div>
+
+  </div>
+</nav>
