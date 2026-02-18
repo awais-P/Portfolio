@@ -7,6 +7,7 @@ import { Footer } from './components/footer/footer';
 import { RouterModule } from '@angular/router';
 import { ProjectCard } from './components/project-card/project-card';
 import { BlogCard } from './components/blog-card/blog-card';
+import { ContactMe } from './components/contact-me/contact-me';
 
 
 
@@ -16,6 +17,7 @@ import { BlogCard } from './components/blog-card/blog-card';
     Footer,
     ProjectCard,
     BlogCard,
+    ContactMe,
   ],
   imports: [
     CommonModule,
