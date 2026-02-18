@@ -1,25 +1,28 @@
 import { Injectable } from '@angular/core';
-import { createClient } from '@sanity/client';
+import { createClient, SanityClient } from '@sanity/client';
 import { from, map, Observable } from 'rxjs';
 import { Skill } from '../interfaces/skill';
 import { Profile } from '../interfaces/profile';
 import { Experience } from '../interfaces/experience';
 import { Blog } from '../interfaces/blog';
 import { Project } from '../interfaces/project';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SanityService {
-  private client = createClient({
-    projectId: '26l1tc3v', 
-    dataset: 'production',
-    useCdn: true,
-    apiVersion: '2023-05-03',
-  });
+  private client: SanityClient;
 
-  constructor() { }
-
+  constructor() {
+    // Now it automatically picks the right settings (Dev or Prod)
+    this.client = createClient({
+      projectId: environment.sanity.projectId,
+      dataset: environment.sanity.dataset,
+      apiVersion: environment.sanity.apiVersion,
+      useCdn: environment.sanity.useCdn,
+    });
+  }
   // Method 1: Get ALL Projects (For Projects Page)
   getProjects(): Observable<Project[]> {
     return from(this.client.fetch(`
