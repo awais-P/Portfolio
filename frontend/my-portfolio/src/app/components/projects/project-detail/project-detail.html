@@ -1,0 +1,81 @@
+<div class="project-detail-container" *ngIf="project$ | async as project">
+  
+  <!-- Hero/Banner Section -->
+  <header class="hero-banner">
+    <img [src]="project.imageUrl" [alt]="project.title" class="hero-image">
+    <div class="hero-overlay"></div>
+    
+    <button class="back-button" (click)="goBack()">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to Projects</span>
+    </button>
+
+    <!-- Navigation Arrows -->
+    <button class="nav-arrow prev" 
+            (click)="goToPrevious()" 
+            [class.disabled]="!hasPrevious"
+            [disabled]="!hasPrevious">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    
+    <button class="nav-arrow next" 
+            (click)="goToNext()" 
+            [class.disabled]="!hasNext"
+            [disabled]="!hasNext">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+    
+    <div class="hero-content">
+      <h1 class="project-title">{{ project.title }}</h1>
+    </div>
+  </header>
+
+  <!-- Main Content Section -->
+  <main class="content-section">
+    <div class="container">
+      
+      <!-- Description -->
+      <section class="description-section">
+        <h2 class="section-heading">About This Project</h2>
+        <p class="description-text">{{ project.description }}</p>
+      </section>
+
+      <!-- Tech Stack -->
+      <section class="tech-section" *ngIf="project.techStack?.length">
+        <h2 class="section-heading">Tech Stack</h2>
+        <div class="tech-tags">
+          <span class="tech-tag" *ngFor="let tech of project.techStack">
+            {{ tech }}
+          </span>
+        </div>
+      </section>
+
+      <!-- Action Buttons -->
+      <section class="actions-section">
+        <a *ngIf="project.link" 
+           [href]="project.link" 
+           target="_blank" 
+           class="action-btn primary">
+          <i class="fas fa-external-link-alt"></i>
+          <span>Live Demo</span>
+        </a>
+        
+        <a *ngIf="project.githubLink" 
+           [href]="project.githubLink" 
+           target="_blank" 
+           class="action-btn secondary">
+          <i class="fab fa-github"></i>
+          <span>View Source</span>
+        </a>
+      </section>
+
+    </div>
+  </main>
+  
+</div>
+
+<!-- Loading State -->
+<div class="loading-container" *ngIf="!(project$ | async)">
+  <div class="spinner"></div>
+  <p>Loading project...</p>
+</div>

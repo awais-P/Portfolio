@@ -124,4 +124,18 @@ export class SanityService {
       }
     `));
   }
+
+  getProjectBySlug(slug: string): Observable<Project> {
+    return from(this.client.fetch(`
+      *[_type == "project" && slug.current == $slug][0]{
+        title,
+        description,
+        "imageUrl": image.asset->url,
+        techStack,
+        link,
+        githubLink,
+        slug
+      }
+    `, { slug }));
+  }
 }

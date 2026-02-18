@@ -14,9 +14,9 @@ export class ProjectCard {
   constructor(private router: Router) {}
 
   openDetail() {
-    // Navigate to the detail page (We will build this page next!)
+    // Navigate to the detail page
     if (this.project.slug) {
-      this.router.navigate(['/project', this.project.slug.current]);
+      this.router.navigate(['/projects', this.project.slug.current]);
     }
   }
 }
